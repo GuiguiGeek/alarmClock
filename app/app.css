@@ -1,0 +1,26 @@
+.fab-button {
+    width: 56;
+    height: 56;
+    margin: 16;
+    border-radius: 28;
+    font-size: 24;
+    horizontal-align: right;
+    vertical-align: bottom;
+    elevation: 5;
+}
+
+.bg-primary {
+    background-color: #6200ee;
+}
+
+.text-primary {
+    color: #6200ee;
+}
+
+.ns-dark .bg-primary {
+    background-color: #bb86fc;
+}
+
+.ns-dark .text-primary {
+    color: #bb86fc;
+}

@@ -1,0 +1,44 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" 
+      navigatingTo="onNavigatingTo"
+      actionBarHidden="false"
+      class="{{ isDarkTheme ? 'ns-dark' : '' }}">
+    
+    <ActionBar title="Alarms">
+        <ActionItem ios.position="right" android.position="actionBar">
+            <StackLayout orientation="horizontal">
+                <Label text="&#xf186;" class="fas text-lg mr-4" tap="{{ toggleTheme }}" />
+                <Label text="&#xf013;" class="fas text-lg" tap="{{ onSettings }}" />
+            </StackLayout>
+        </ActionItem>
+    </ActionBar>
+
+    <GridLayout rows="*, auto">
+        <!-- Alarms List -->
+        <ListView items="{{ alarms }}" row="0">
+            <ListView.itemTemplate>
+                <GridLayout columns="auto, *, auto" rows="auto, auto" class="p-4 bg-white dark:bg-gray-800">
+                    <Label col="0" rowSpan="2" text="{{ time }}" class="text-2xl font-bold text-primary" />
+                    
+                    <StackLayout col="1" row="0" class="ml-4">
+                        <Label text="{{ label }}" class="text-lg dark:text-white" />
+                        <Label text="{{ repeatPattern.type }}" class="text-sm text-gray-500 dark:text-gray-400" />
+                    </StackLayout>
+                    
+                    <StackLayout col="1" row="1" class="ml-4 mt-2">
+                        <GridLayout columns="auto,auto,auto" class="text-sm">
+                            <Label col="0" text="{{ sound }}" class="text-gray-500 dark:text-gray-400" />
+                            <Label col="1" text="{{ vibrate ? '• Vibrate' : '' }}" class="text-gray-500 dark:text-gray-400 ml-2" />
+                            <Label col="2" text="{{ snoozeEnabled ? '• Snooze' : '' }}" class="text-gray-500 dark:text-gray-400 ml-2" />
+                        </GridLayout>
+                    </StackLayout>
+
+                    <Switch col="2" rowSpan="2" checked="{{ isEnabled }}" tap="{{ $parent.onToggleAlarm }}" />
+                </GridLayout>
+            </ListView.itemTemplate>
+        </ListView>
+
+        <!-- Add Alarm FAB -->
+        <Button row="1" text="+" tap="{{ onAddAlarm }}" 
+                class="fab-button bg-primary text-white dark:text-gray-800" />
+    </GridLayout>
+</Page>
